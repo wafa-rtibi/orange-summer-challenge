@@ -9,15 +9,14 @@ function App() {
   const isAuth=localStorage.getItem('isAuth')
   return (
     <div className="App">
-     
       <Routes>
-        <Route path={"/"} element={<Login />}></Route>
-         { isAuth &&  <Route path="/home" element={<Home />}>
-        </Route>}
-        { isAuth && <Route path="/users" element={<Users />}></Route>}
-        {isAuth && <Route path={"/items"} element={<Item />}></Route>}
-        <Route path="*" element={<Error />}></Route>
+        <Route path={"/"} element={<Login/>}></Route>
+        {isAuth &&  <Route path="/home" element={<Home/>}></Route>}
+        {isAuth && <Route path="/users" element={<Users/>}></Route>}
+        {isAuth && <Route path={"/items"} element={<Item/>}></Route>}
+        <Route path="*" element={<Error/>}></Route>
       </Routes>
+     
     </div>
   );
 }

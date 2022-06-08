@@ -1,179 +1,64 @@
-import React, { useEffect, useState } from "react";
-import {Link,useNavigate} from 'react-router-dom'
+import React, { useState } from "react";
+import {Link} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { signin } from "../redux/actions/authActions";
 
 const Login = () => {
   
   const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const isAuth=localStorage.getItem("isAuth")
   const [user, setUser] = useState({email:"" , password:""})
- 
-  
-  
-  return (
-    <div
-      className="app-container app-theme-white body-tabs-shadow"
-      style={{ height: "100%" , width:"100%"}}
-    >
-      <div className="app-container" >
-        <div className="h-100">
-          <div className="h-100 no-gutters row">
-            <div className="d-none d-lg-block col-lg-4">
-              <div className="slider-light">
-                <div className="slick-slider">
-                  <div>
-                    <div
-                      className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate"
-                      tabIndex={-1}
-                      
-                    >
-                      <div
-                        className="slide-img-bg"
-                        style={{
-                          backgroundImage:
-                            'url("assets/images/originals/city.jpg")',
-                        }}
-                      />
-                      <div className="slider-content">
-                        <h3>Perfect Balance</h3>
-                        <p>
-                          ArchitectUI is like a dream. Some think it's too good
-                          to be true! Extensive collection of unified React
-                          Boostrap Components and Elements.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="position-relative h-100 d-flex justify-content-center align-items-center bg-premium-dark"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="slide-img-bg"
-                        style={{
-                          backgroundImage:
-                            'url("assets/images/originals/citynights.jpg")',
-                        }}
-                      />
-                      <div className="slider-content">
-                        <h3>Scalable, Modular, Consistent</h3>
-                        <p>
-                          Easily exclude the components you don't require.
-                          Lightweight, consistent Bootstrap based styles across
-                          all elements and components
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="position-relative h-100 d-flex justify-content-center align-items-center bg-sunny-morning"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="slide-img-bg"
-                        style={{
-                          backgroundImage:
-                            'url("assets/images/originals/citydark.jpg")',
-                        }}
-                      />
-                      <div className="slider-content">
-                        <h3>Complex, but lightweight</h3>
-                        <p>
-                          We've included a lot of components that cover almost
-                          all use cases for any type of application.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="h-100 d-flex bg-white justify-content-center align-items-center col-md-12 col-lg-8">
-              <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
-                <div className="app-logo" />
-                <h4 className="mb-0">
-                  <span className="d-block">Welcome back,</span>
-                  <span>Please sign in to your account.</span>
-                </h4>
+  const handleLogin=()=>{
+        dispatch(signin(user))
+  }
 
-                <div className="divider row" />
-                <div>
-                  <form className>
-                    <div className="form-row">
-                      <div className="col-md-6">
-                        <div className="position-relative form-group">
-                          <label htmlFor="exampleEmail" className>
-                            Email
-                          </label>
-                          <input
-                            onChange={(e) =>
-                              setUser({ ...user, email: e.target.value })
-                            }
-                            name="email"
-                            id="exampleEmail"
-                            placeholder="Email here..."
-                            type="email"
-                            className="form-control"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="position-relative form-group">
-                          <label htmlFor="examplePassword" className>
-                            Password
-                          </label>
-                          <input
-                            onChange={(e) =>
-                              setUser({ ...user, password: e.target.value })
-                            }
-                            name="password"
-                            id="examplePassword"
-                            placeholder="Password here..."
-                            type="password"
-                            className="form-control"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="position-relative form-check">
-                      <input
-                        name="check"
-                        id="exampleCheck"
-                        type="checkbox"
-                        className="form-check-input"
-                      />
-                      <label
-                        htmlFor="exampleCheck"
-                        className="form-check-label"
-                      >
-                        Keep me logged in
-                      </label>
-                    </div>
-                    <div className="divider row" />
-                    <div className="d-flex align-items-center">
-                      <div className="ml-auto">
-                        <button
-                          className="btn btn-primary btn-lg"
-                          onClick={() => dispatch(signin(user)) && (isAuth?navigate("/home"):navigate("/"))}
-                        >
-                          Login to App
-                          
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  
+
+  return (
+    <div>
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+        rel="stylesheet"
+      />
+      {/*Stylesheet*/}
+      <style
+        media="screen"
+        dangerouslySetInnerHTML={{
+          __html:
+            "\n      *,\n*:before,\n*:after{\n    padding: 0;\n    margin: 0;\n    box-sizing: border-box;\n}\nbody{\n    background-color: #080710;\n}\n.background{\n    width: 430px;\n    height: 520px;\n    position: absolute;\n    transform: translate(-50%,-50%);\n    left: 50%;\n    top: 50%;\n}\n.background .shape{\n    height: 200px;\n    width: 200px;\n    position: absolute;\n    border-radius: 50%;\n}\n.shape:first-child{\n    background: linear-gradient(\n        #1845ad,\n        #23a2f6\n    );\n    left: -80px;\n    top: -80px;\n}\n.shape:last-child{\n    background: linear-gradient(\n        to right,\n        #ff512f,\n        #f09819\n    );\n    right: -30px;\n    bottom: -80px;\n}\nform{\n    height: 520px;\n    width: 400px;\n    background-color: rgba(255,255,255,0.13);\n    position: absolute;\n    transform: translate(-50%,-50%);\n    top: 50%;\n    left: 50%;\n    border-radius: 10px;\n    backdrop-filter: blur(10px);\n    border: 2px solid rgba(255,255,255,0.1);\n    box-shadow: 0 0 40px rgba(8,7,16,0.6);\n    padding: 50px 35px;\n}\nform *{\n    font-family: 'Poppins',sans-serif;\n    color: #ffffff;\n    letter-spacing: 0.5px;\n    outline: none;\n    border: none;\n}\nform h3{\n    font-size: 32px;\n    font-weight: 500;\n    line-height: 42px;\n    text-align: center;\n}\n\nlabel{\n    display: block;\n    margin-top: 30px;\n    font-size: 16px;\n    font-weight: 500;\n}\ninput{\n    display: block;\n    height: 50px;\n    width: 100%;\n    background-color: rgba(255,255,255,0.07);\n    border-radius: 3px;\n    padding: 0 10px;\n    margin-top: 8px;\n    font-size: 14px;\n    font-weight: 300;\n}\n::placeholder{\n    color: #e5e5e5;\n}\nbutton{\n    margin-top: 50px;\n    width: 100%;\n    background-color: #ffffff;\n    color: #080710;\n    padding: 15px 0;\n    font-size: 18px;\n    font-weight: 600;\n    border-radius: 5px;\n    cursor: pointer;\n}\n.social{\n  margin-top: 30px;\n  display: flex;\n}\n.social div{\n  background: red;\n  width: 150px;\n  border-radius: 3px;\n  padding: 5px 10px 10px 5px;\n  background-color: rgba(255,255,255,0.27);\n  color: #eaf0fb;\n  text-align: center;\n}\n.social div:hover{\n  background-color: rgba(255,255,255,0.47);\n}\n.social .fb{\n  margin-left: 25px;\n}\n.social i{\n  margin-right: 4px;\n}\n\n    ",
+        }}
+      />
+      <div className="background">
+        <div className="shape" />
+        <div className="shape" />
       </div>
+      <form>
+        <h3>Login Here</h3>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          placeholder="Email "
+          id="email"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+        />
+        <Link to={"/home"}>
+          <button onClick={handleLogin}>Log In</button>
+        </Link>
+      </form>
     </div>
   );
+
 };
 
 export default Login;

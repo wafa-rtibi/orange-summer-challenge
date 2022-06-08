@@ -21,7 +21,7 @@ const addUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   try {
-    await User.updateOne( { _id: req.params.id }, req.body);
+    await User.findByIdAndUpdate(  req.params.id , {...req.body});
     res.status(200).send("user updated");
   } catch (error) {
     res.send(error);
@@ -31,7 +31,7 @@ const editUser = async (req, res) => {
 const removeUser = async (req, res) => {
   const ID=(req.params.id)
   try {
-    await User.find({ _id: ID }).remove().exec();
+    await User.findByIdAndDelete(ID)
     res.status(200).send("user deleted");
   } catch (error) {
     res.send(error);

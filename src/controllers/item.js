@@ -19,7 +19,7 @@ try {
 
 const editItem=async(req,res)=>{
 try {
-    await Item.findByIdAndUpdate(req.body,{_id:req.params.id})
+    await Item.findByIdAndUpdate(req.params.id, {...req.body})
     res.status(200).send("item updated")
 } catch (error) {
   res.send(error);

@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(cors());
 app.use(fileUpload());
 
+// connect data base 
+connectDB()
+
 app.use('/api/auth', require('./src/routes/auth'))
 app.use('/api/item', require('./src/routes/item'))
 app.use('/api/user', require('./src/routes/user'))
@@ -24,9 +27,6 @@ app.post("/upload", (req, res) => {
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
   });
 });
-
-// connect data base 
-connectDB()
 
 app.listen(PORT, (err)=>{
     (err)? console.log(err) : console.log(`server running at port ${PORT}`)

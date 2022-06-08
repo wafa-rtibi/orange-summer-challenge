@@ -11,7 +11,7 @@ const reducerUser = (state = initialState, { type, payload }) => {
     case LOAD_USERS:
       return { ...state, load: true };
     case GET_USERS:
-      return { ...state, load: false, users: [...payload] };
+      return { ...state, load: false, users: payload };
     case FAIL_USERS:
       return { ...state, load: false, error: payload };
     default:

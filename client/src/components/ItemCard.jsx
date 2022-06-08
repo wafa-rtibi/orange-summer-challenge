@@ -1,31 +1,25 @@
-import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { editItem, removeItem } from "../redux/actions/itemActions";
-const ItemCard = ({ item }) => {
-  const [newItem, setnewItem] = useState({ name: "", description: "" });
-   const [show, setShow] = useState(false);
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
-  const dispatch = useDispatch();
+import React from 'react'
+import {Card,Button} from 'react-bootstrap'
+import { useDispatch } from 'react-redux';
+import { removeItem } from '../redux/actions/itemActions';
+import ItemEdit from './ItemEdit';
+const ItemCard = ({item}) => {
+  const dispatch=useDispatch()
   return (
-    <Card 
-    style={{ width: "18rem",margin:"10px" }}>
-      <Card.Body>
-        <Card.Title>{item.name}</Card.Title>
-        <Card.Text>{item.description}</Card.Text>
+    <>
+      <Card border="warning" style={{ width: "18rem", margin:"10px" }}>
+        <Card.Header style={{ color: "black" }}>{item._id}</Card.Header>
+        <Card.Body>
+          <Card.Title style={{ color: "black" }}>{item.name}</Card.Title>
+          <Card.Text style={{ color: "black" }}>{item.description}</Card.Text>
+        </Card.Body>
         <Button variant="danger" onClick={() => dispatch(removeItem(item._id))}>
-          delete
+          Delete
         </Button>
-        <Button
-          variant="primary"
-          onClick={() => dispatch(editItem(item.id, newItem))}
-        >
-          edit
-        </Button>
-      </Card.Body>
-    </Card>
+        <ItemEdit item={item} />
+      </Card>
+    </>
   );
-};
+}
 
-export default ItemCard;
+export default ItemCard

@@ -8,9 +8,6 @@ const ItemModel = new mongoose.Schema(
     description: {
       type: String,
     },
-    image: {
-      type: String,
-    },
   },
   { timestamps: true }
 );

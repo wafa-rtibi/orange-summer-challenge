@@ -29,14 +29,11 @@ try {
     res.status(500).send(error)
 }
 }
-const registre=async(req,res,next)=>{
-            
-let {name, email, password ,role }=req.body
+const registre=async(req,res,next)=>{           
+let {name, email, password ,role , image }=req.body
 
 try {
-    const user= await User.create({
-        name , email , password , role
-    })
+    const user=await User.create({name , email , password , role , image })
     res.status(201).json({success:true , user: user})
     next()
 } catch (error) {
