@@ -33,8 +33,7 @@ const UserEdit = ({user}) => {
           ? setUserEdit({ ...userEdit, image: filePath })
           : setUserEdit({
               ...userEdit,
-              image:
-                "https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png",
+              image:user.image
             });
       } catch (error) {
         console.log(error);
@@ -71,6 +70,7 @@ const UserEdit = ({user}) => {
                onChange={(e) =>
                  setUserEdit({ ...userEdit, name: e.target.value })
                }
+               defaultValue={user.name}
                placeholder="Username"
                aria-label="Username"
                aria-describedby="basic-addon1"
@@ -79,6 +79,7 @@ const UserEdit = ({user}) => {
            <InputGroup className="mb-3">
              <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
              <FormControl
+              defaultValue={user.email}
                onChange={(e) =>
                  setUserEdit({ ...userEdit, email: e.target.value })
                }
@@ -93,6 +94,7 @@ const UserEdit = ({user}) => {
                onChange={(e) =>
                  setUserEdit({ ...userEdit, password: e.target.value })
                }
+               defaultValue={user.password}
                type="password"
                placeholder="Password"
                aria-label="password"

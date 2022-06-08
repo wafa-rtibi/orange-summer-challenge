@@ -5,7 +5,6 @@ const app=express()
 const fileUpload = require("express-fileupload");
 const PORT= process.env.PORT || 5222
 const connectDB=require('./src/config/db')
-
 app.use(express.json());
 app.use(cors());
 app.use(fileUpload());
@@ -15,7 +14,7 @@ connectDB()
 
 app.use('/api/auth', require('./src/routes/auth'))
 app.use('/api/item', require('./src/routes/item'))
-app.use('/api/user', require('./src/routes/user'))
+app.use('/api/user',require('./src/routes/user'))
 
 app.post("/upload", (req, res) => {
   const file = req.files.file;

@@ -14,14 +14,22 @@ const Users = () => {
   }, [dispatch])
   
   return (
-    <div>
-      <Navbaar/>
-      <AddUser/>
-      <div style={{display:"flex", flexWrap:"wrap"}}>
-        {role=="MANAGER"?users?.map(el=><UserCard key={el._id} user={el}/>) : <h1>ONLY FOR MANAGERS</h1>}
-      </div>
-      <Footer/>
-    </div>
+    <>
+      <Navbaar />
+      {role == "MANAGER" ? (
+        <div>
+          <AddUser />
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {users?.map((el) => (
+              <UserCard key={el._id} user={el} />
+            ))}
+          </div>
+          <Footer />
+        </div>
+      ) : (
+        <div style={{ color: "black" }}>ONLY FOR MANAGERS</div>
+      )}
+    </>
   );
 }
 
